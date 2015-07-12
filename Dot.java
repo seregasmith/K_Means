@@ -2,11 +2,26 @@ package K_Means;
 
 import java.awt.Color;
 
-public class Dot {
+public class Dot extends ClusterMember {
 	private int x,y; // coordinates
 	private int width;
 	private Color color = Color.black;
 	
+	public Dot (){
+		super();
+	}
+	
+//	public Dot( Dot src ){
+//		this.color = src.color;
+//		this.x = src.x;
+//		this.y = src.y;
+//	}
+	
+//	public Dot( ClusterMember src ){
+//		if( src.getClass().equals(Dot.class) )
+//			Dot((Dot)src);
+//	}
+
 	public Dot( int x, int y, int width, Color color){
 		this.x = x;
 		this.y = y;
@@ -43,7 +58,11 @@ public class Dot {
 	public void setColor(Color src){
 		color = new Color(src.getRGB());
 	}
-	public double distance(Dot other){
+//	public double distance(Dot other){
+//		return Math.sqrt(Math.pow(x - other.x,2) + Math.pow(y - other.y,2));
+//	}
+	public double distance(ClusterMember otherCl){
+		Dot other = (Dot) otherCl;
 		return Math.sqrt(Math.pow(x - other.x,2) + Math.pow(y - other.y,2));
 	}
 }

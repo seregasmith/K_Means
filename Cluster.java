@@ -3,40 +3,43 @@ package K_Means;
 import java.util.ArrayList;
 
 public class Cluster {
-	private ArrayList<Dot> members;
-	private Dot centroid;
+	private ArrayList<ClusterMember> members;
+	private ClusterMember centroid;
 	
-	public Cluster( Dot centroid ) {
+//	public Cluster(  ) {
+//		members = new ArrayList<ClusterMember> ();
+//	}
+	
+	public Cluster( ClusterMember centroid ){
 		this.centroid = centroid;
-		members = new ArrayList<Dot> ();
+		members = new ArrayList<ClusterMember> ();
 	}
-	
-	public void addMember( Dot src){
-		Dot member = src.clone();
+	public void addMember( ClusterMember src){
+		ClusterMember member = src.clone();
 		member.setColor(centroid.getColor());
 		members.add(member);
 	}
 	
-	public ArrayList<Dot> toArrayList(){
-		ArrayList<Dot> res = (ArrayList<Dot>)members.clone();
+	public ArrayList<ClusterMember> toArrayList(){
+		ArrayList<ClusterMember> res = (ArrayList<ClusterMember>)members.clone();
 		res.add(centroid);
 		return res;
 	}
+	public ArrayList<ClusterMember> getMembers(){
+		return members;
+	}
 	
-	public Dot getCentroid() {
+//	public ClusterMember[] getMembers(){
+//		ClusterMember[] res = new ClusterMember[members.size()]; 
+//		for(int i=0; i<res.length; i++){
+//			res[i] = members.get(i);
+//		}
+//		return res;
+//	}
+	
+	public ClusterMember getCentroid() {
 		return centroid;
 	}
 	
-	public Dot getMassCentr(){
-		Dot res = centroid.clone();
-		int rcX = 0; int rcY = 0;
-		for(Dot m : members){
-			rcX += m.getX();
-			rcY += m.getY();
-		}
-		res.setX( (int) ( rcX/members.size() ) );
-		res.setY( (int) ( rcY/members.size() ) );
-		
-		return res;
-	}
+//	public abstract ClusterMember getMassCentr();
 }
